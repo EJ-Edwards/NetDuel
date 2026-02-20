@@ -7,6 +7,7 @@ NetDuel is a multiplayer and single player Rock-Paper-Scissors Game that can be 
  2. First use copy and paste this "git clone https://github.com/EJ-Edwards/NetDuel.git" (note remove the quotation marks or else this instaliaton wont work)
  3. cd into cli-dash and than run node index.js
  4. From there you can have fun and play this game 
+
 ## Usage
 
 ## Folder structure
