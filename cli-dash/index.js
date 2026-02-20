@@ -32,11 +32,30 @@ function runPythonGame() {
 }
 
 function runMultiplayer() {
-  console.log('Connecting to NetDuel multiplayer server...');
+  console.log('Multiplayer Room Options:');
+  console.log('1. Create Room');
+  console.log('2. Join Room');
+  rl.question('Choose an option (1 or 2): ', (opt) => {
+    if (opt === '1') {
+      const roomPin = Math.floor(1000 + Math.random() * 9000).toString();
+      console.log('Your room pin is:', roomPin);
+      startMultiplayerWithPin(roomPin);
+    } else if (opt === '2') {
+      rl.question('Enter room pin: ', (roomPin) => {
+        startMultiplayerWithPin(roomPin);
+      });
+    } else {
+      console.log('Invalid option. Returning to menu.');
+      mainMenu();
+    }
+  });
+}
+
+function startMultiplayerWithPin(roomPin) {
   const ws = connectToServer(
     () => {
       rl.question('Enter your username: ', (username) => {
-        ws.send(JSON.stringify({ type: 'join', username }));
+        ws.send(JSON.stringify({ type: 'join', username, info: roomPin }));
         promptMove(ws);
       });
     },
